@@ -30,6 +30,7 @@ function Game() {
     }
 
     this.moveFurry = function() {
+
         if(this.furry.direction === "right") {
             this.furry.x = this.furry.x + 1;
         } else if (this.furry.direction === "left") {
@@ -70,6 +71,7 @@ function Game() {
     }
 
     this.checkCoinCollision = function() {
+        
         if(this.furry.x === this.coin.x && this.furry.y === this.furry.y)
         document.querySelector('.coin').classList.remove('coin');
         this.score++;
@@ -77,32 +79,38 @@ function Game() {
         document.querySelector('.score').innerText = this.score;
         this.coin = new Coin();
         this.showCoin();
+        
     }
 
     this.gameOver = function() {
         if(this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9) {
             clearInterval(this.idSetInterval);
-            this.board[ this.index(this.coin.x, this.coin.y) ].classList.remove('coin');
+           // this.board[ this.index(this.coin.x, this.coin.y) ].classList.remove('coin');
             alert('Game over!!!');
             this.hideVisibleFurry();
             return true;
-        } else {
+        } 
+        return false;
+     };
+     
+     /*
+     {
             this.showFurry();
             this.checkCoinCollision();
             return false;
         }
     }
 
+    */
     this.startGame = function() {
         this.idSetInterval = setInterval(function(){
             self.moveFurry()}, 250); 
     }
-   
-}
+};
 
 const startGame = new Game();
 startGame.showFurry();
 startGame.showCoin();
-//startGame.startGame();
-
+startGame.hideVisibleFurry();
+startGame.startGame();
 
