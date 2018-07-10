@@ -22,6 +22,7 @@ function Game() {
     };
 
     this.showFurry = function() {
+        this.hideVisibleFurry();
         this.board[ this.index(this.furry.x,this.furry.y) ].classList.add('furry');
     }
 
@@ -40,11 +41,17 @@ function Game() {
         } else if (this.furry.direction === "down") {
             this.furry.y = this.furry.y + 1;
         }
-        this.showFurry();
+        if( this.gameOver() == false) {
+            this.showFurry();
+            this.checkCoinCollision()
+        }
+        
     }
 
     this.hideVisibleFurry = function() {
-        document.querySelector('.furry').classList.remove('furry');
+        if( document.querySelector('.furry') != null) {
+            document.querySelector('.furry').classList.remove('furry');
+        }
     }
 
     document.addEventListener('keydown', function(event){
@@ -68,18 +75,19 @@ function Game() {
             }
 
         this.showCoin();
+        this.showFurry();
     }
 
     this.checkCoinCollision = function() {
         
-        if(this.furry.x === this.coin.x && this.furry.y === this.furry.y)
-        document.querySelector('.coin').classList.remove('coin');
-        this.score++;
-        document.getElementById('score').play();
-        document.querySelector('.score').innerText = this.score;
-        this.coin = new Coin();
-        this.showCoin();
-        
+        if(this.furry.x === this.coin.x && this.furry.y === this.coin.y) {
+            document.querySelector('.coin').classList.remove('coin');
+            this.score++;
+            // document.getElementById('score').play();
+            document.querySelector('#score strong').innerText = this.score;
+            this.coin = new Coin();
+            this.showCoin();
+        }
     }
 
     this.gameOver = function() {
@@ -111,6 +119,5 @@ function Game() {
 const startGame = new Game();
 startGame.showFurry();
 startGame.showCoin();
-startGame.hideVisibleFurry();
 startGame.startGame();
 
