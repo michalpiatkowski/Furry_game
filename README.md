@@ -1,7 +1,11 @@
 # Furry_game
 
-This game is written on Coders Lab workshop.
+This game is written at Coders Lab workshop.
 
-Used technologies:
+Technologies:
 
-HTML, CSS, JavaScript
+* HTML
+
+* CSS
+
+* JavaScript
