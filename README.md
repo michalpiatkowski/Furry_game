@@ -1,3 +1,7 @@
 # Furry_game
 
-Projekt gry napisanej w JavaScript podczas warsztatów Coders Lab.
+This game is written on Coders Lab workshop.
+
+Used technologies:
+
+HTML, CSS, JavaScript
